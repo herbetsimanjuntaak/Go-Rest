@@ -9,8 +9,8 @@ Feature: Get List of Users API
     Given set GET request for endpoint "users"
     When sends GET request
     Then status code should be 200 OK
-    And response body should contain a "name"
-    And response body should match the JSON schema "user_list_schema.json"
+    And response body should contain a list of users
+    And response body should match the JSON schema "ListUserSchema.json"
 
   Scenario: Get list of users with invalid endpoint
     Given set GET request for endpoint "userss"
@@ -22,8 +22,8 @@ Feature: Get List of Users API
     Given set GET request for endpoint "users"
     When sends GET request with "page" parameter set "<Value>"
     Then status code should be 200 OK
-    And response body should contain a "name"
-    And response body should match the JSON schema "user_list_schema.json"
+    And response body should contain a list of users
+    And response body should match the JSON schema "ListUserSchema.json"
     Examples:
       | Value |
       | 1     |
@@ -41,11 +41,11 @@ Feature: Get List of Users API
       | 2000  |
       | 5000  |
 
-  Scenario Outline: Get list of users with page and per_page query parameters
+  Scenario Outline: Get list of users with page and per_page parameters
     Given set GET request for endpoint "users"
     When sends GET request with "<page>" parameter and "<per_page>"
     Then status code should be 200 OK
-    And response body should match the JSON schema "user_list_schema.json"
+    And response body should match the JSON schema "ListUserSchema.json"
 
     Examples:
       | page | per_page |
@@ -53,7 +53,7 @@ Feature: Get List of Users API
       | 3    | 5        |
       | 15   | 10       |
 
-  Scenario Outline: Get list of users with invalid page and per_page query parameters
+  Scenario Outline: Get list of users with invalid page and per_page parameters
     Given set GET request for endpoint "users"
     When sends GET request with "<page>" parameter and "<per_page>"
     Then status code should be 200 OK

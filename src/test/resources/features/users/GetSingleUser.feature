@@ -5,11 +5,10 @@ Feature: Get Single User API
   I want to retrieve a single user's data
   So that I can view the details of that specific user
 
-  Scenario: Get list of users with a valid endpoint
-    Given set GET request for endpoint "users" and "7627657"
+  Scenario: Get single user detail registered
+    Given set Get request single user detail registered
     When sends GET request
     Then status code should be 200 OK
-    And response body should contain a "7627657"
     And response body should match the JSON schema "SingleUserSchema.json"
 
   Scenario Outline: Get single user detail unregistered id
