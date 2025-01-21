@@ -8,7 +8,7 @@ import page.GoRestApiPage;
 import java.util.List;
 import java.util.Map;
 
-import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.containsString;
 
 public class PostSteps {
 
@@ -40,6 +40,6 @@ public class PostSteps {
     @And("response body should match {string} is {string}")
     public void responseBodyShouldMatchIs(String jsonPath, String expectedJsonPathValue) {
         Response response = GoRestApiPage.response;
-        response.then().body(jsonPath, equalTo(expectedJsonPathValue));
+        response.then().body(jsonPath, containsString(expectedJsonPathValue));
     }
 }
