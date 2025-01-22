@@ -1,11 +1,11 @@
-@GoRest @User @getListPost
+@GoRest @Posts @getListPost
 
 Feature: Get List of Posts API
   As a user of the GoRest API
   I want to retrieve a list of posts
   So that I can view post data
 
-  Scenario: Get list of posts users with a valid endpoint
+  Scenario: Get List of Posts Successfully
     Given set GET request for endpoint "posts"
     When sends GET request
     Then status code should be 200 OK

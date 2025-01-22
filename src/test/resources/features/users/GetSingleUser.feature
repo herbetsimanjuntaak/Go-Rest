@@ -1,4 +1,4 @@
-@GoRest @User @getSingleUser
+@GoRest @Users @getSingleUser
 
 Feature: Get Single User API
   As a user of the GoRest API

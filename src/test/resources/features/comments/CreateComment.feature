@@ -1,25 +1,27 @@
-@GoRest @Posts @CreatePosts
+@GoRest @Comments @CreateComments
 
-Feature: Create New Post API
+Feature: Create New Comment API
   As a user of the GoRest API
-  I want to create a new post
-  So that I can share content and information
+  I want to create a new comment
+  So that I can associate feedback or remarks with a post
+
+  post_id required to determine which post will be commented on.
 
 
-  Scenario: Successfully create a new posts with valid data
-    Given set Post request for endpoint "posts"
-    And the request body is "ValidBodyPost.json"
+  Scenario: Successfully create a new Comment with valid data
+    Given set Post request for endpoint "comments"
+    And the request body is "ValidBodyComment.json"
     When sends Post request
     Then status code should be 201 Created
-    And value of response "title" is "Create Post"
-    And value of response "body" is "this post created by Herbet Simanjuntak"
-    And response body should match "body" is "this post created by Herbet Simanjuntak"
-    And response body should match the JSON schema "CreatePostSchema.json"
+    And value of response "name" is "Herbet Simanjuntak"
+    And value of response "email" is "herbet@test"
+    And response body should match "body" is "herbet create a comments here"
+    And response body should match the JSON schema "CreateCommentSchema.json"
 
 
-  Scenario: Create a new posts without an invalid auth token
+  Scenario: Create a new comment without an invalid auth token
     Given set Post request for endpoint "posts"
-    And the request body is "ValidBodyPost.json"
+    And the request body is "ValidBodyComment.json"
     When sends Post request invalid auth token
     Then status code should be 401 Unauthorized
     And value of response "message" is "Authentication failed"

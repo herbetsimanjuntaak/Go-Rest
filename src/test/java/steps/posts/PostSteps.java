@@ -1,6 +1,7 @@
 package steps.posts;
 
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
 import io.restassured.response.Response;
 import org.junit.Assert;
 import page.GoRestApiPage;
@@ -11,10 +12,12 @@ import java.util.Map;
 import static org.hamcrest.CoreMatchers.containsString;
 
 public class PostSteps {
+    GoRestApiPage goRestApiPage = new GoRestApiPage();
+    private Response response;
 
     @And("value of response {string} is {string}")
     public void valueOfResponseIs(String jsonPath, String expectedJsonPathValue) {
-        Response response = GoRestApiPage.response;
+        response = GoRestApiPage.response;
 
         String jsonPathValue = response.jsonPath().get(jsonPath);
         System.out.println(jsonPathValue);
@@ -39,7 +42,31 @@ public class PostSteps {
 
     @And("response body should match {string} is {string}")
     public void responseBodyShouldMatchIs(String jsonPath, String expectedJsonPathValue) {
-        Response response = GoRestApiPage.response;
+        response = GoRestApiPage.response;
         response.then().body(jsonPath, containsString(expectedJsonPathValue));
+    }
+
+    @Given("set PUT request to update the registered post")
+    public void setPUTRequestToUpdateTheRegisteredPost() {
+        goRestApiPage.setEndpoint("posts");
+        response = goRestApiPage.sendGetRequest(true);
+        int id = response.jsonPath().getInt("[9].id");
+        goRestApiPage.setEndpoint("posts/"+id);
+    }
+
+    @Given("set DELETE request to delete the registered post")
+    public void setDELETERequestToDeleteTheRegisteredPost() {
+        goRestApiPage.setEndpoint("posts");
+        response = goRestApiPage.sendGetRequest(true);
+        int id = response.jsonPath().getInt("[9].id");
+        goRestApiPage.setEndpoint("posts/"+id);
+    }
+
+    @Given("set Get request single post detail registered")
+    public void setGetRequestSinglePostDetailRegistered() {
+        goRestApiPage.setEndpoint("posts");
+        response = goRestApiPage.sendGetRequest(true);
+        int id = response.jsonPath().getInt("[9].id");
+        goRestApiPage.setEndpoint("posts/"+id);
     }
 }

@@ -29,7 +29,7 @@ Feature: Update User API
       | 440680 |
 
   Scenario: Update user with an invalid auth token
-    Given set PUT request for endpoint "users" and "7632711"
+    Given set PUT request for endpoint "users" and "7001859"
     And the request body is "ValidUpdateUser.json"
     When sends PUT request invalid auth token
     Then status code should be 404 Not Found

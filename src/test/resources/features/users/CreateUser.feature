@@ -1,9 +1,9 @@
-@GoRest @User @createUser
+@GoRest @Users @CreateUsers
 
 Feature: Create User API
   As a user of the GoRest API
   I want to create a new user
-  So that I can store the details of that specific user
+  So that I can add user details to the system
 
 
   Scenario: Successfully create a new user with valid data

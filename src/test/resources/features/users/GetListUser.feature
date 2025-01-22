@@ -1,11 +1,11 @@
-@GoRest @User @getListUser
+@GoRest @Users @GetListUser
 
 Feature: Get List of Users API
   As a user of the GoRest API
   I want to retrieve a list of users
   So that I can view user data
 
-  Scenario: Get list of users with a valid endpoint
+  Scenario: Get List of Users Successfully
     Given set GET request for endpoint "users"
     When sends GET request
     Then status code should be 200 OK
